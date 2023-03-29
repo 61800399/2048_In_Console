@@ -135,18 +135,19 @@ public class Twenty48
 		{
 			for (int X = 0; X < 4; X++)
 			{
-				for (int Y = 3; Y >= 0; Y--)
+				for (int Y = 3; Y > -1; Y--)
 				{
 					int max = 3;
 					while (max >= 0)
 					{
-                        if (_board[max, X] == _board[Y, X] && _board[max, X] != " ")
+                        if (_board[max, X] == _board[Y, X] && _board[max, X] != " " & max != Y)
                         {
                             int.TryParse(_board[max, X], out int num);
                             _board[max, X] = (num * 2).ToString();
 							_board[Y, X] = " ";
+							max--;
                         }
-                        else if (_board[max, X] == " " && _board[Y, X] != " ")
+                        else if (_board[max, X] == " " && _board[Y, X] != " " && max > Y)
                         {
                             _board[max, X] = _board[Y, X];
                             _board[Y, X] = " ";
@@ -178,13 +179,11 @@ public class Twenty48
                             _board[Y, X] = " ";
                             max++;
                         }
-                        else if (_board[max, X] == " " && _board[Y, X] != " ")
+                        else if (_board[max, X] == " " && _board[Y, X] != " " && max < Y)
                         {
 
                             _board[max, X] = _board[Y, X];
                             _board[Y, X] = " ";
-
-
                         }
                         else
                         {
